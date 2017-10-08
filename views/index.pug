@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='theme-color' content='#4DA5F4')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    .container-fluid
+      .row
+        .col-md-12
+          h3
+            | Mentoring 1
+          a.btn.btn-primary(href='/new', role='button')
+            | Create Post
+          table.table
+            thead.thead-inverse
+              tr
+                th Titel
+                th Description
+                th Created At
+                th Tags
+                th Action
+            tbody
+              //TODO: If post is empty
+              each post in postList
+                tr
+                  td= post.titel
+                  td= post.description
+                  td= post.createdAt
+                  td= post.tags
+                  td
+                    a.btn.btn-primary(href='/edit', role='button') Edit                     
+          if pageCount > 1
+            ul.pagination
+              if currentPage > 1
+                li
+                  a(href='/?page=1')  &laquo;
+              - var x = 1
+              if currentPage > 5
+                - x = x + (currentPage - 4)
+              if (x !== 1)
+                li.disabled
+                  a(href='#') ...
+              - for (x; x <= pageCount; x++)
+                if( currentPage == x)
+                  li.active
+                    span.sr_only
+                      = currentPage
+                else
+                  li
+                    a(href= "/?page=#{x}" )
+                      = x
+                if x == (currentPage + 4)
+                  li.disabled
+                    a(href="#") ...
+                    - break
+              if currentPage != pageCount
+                li
+                  a(href= "/?page=#{Math.floor(pageCount)}" ) &raquo;
+                  
+  script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+  script.        
+   
+     script(src='/js/bootstrap.min.js')   
