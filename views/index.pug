@@ -52,7 +52,7 @@ html
                       = currentPage
                 else
                   li
-                    a(href= "/?page=#" + x )
+                    a(href= "/?page=" + x )
                       = x
                 if x == (currentPage + 4)
                   li.disabled
@@ -65,4 +65,4 @@ html
   script(src='https://code.jquery.com/jquery-3.1.1.min.js')
   script.        
    
-     script(src='/js/bootstrap.min.js')   
+     script(src='/js/bootstrap.min.js')
